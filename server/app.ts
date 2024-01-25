@@ -9,11 +9,12 @@ import docsValidator from './utils/docsValidator';
 import initRouter from './routes';
 import config from './config';
 import logger from './utils/logger';
+import controller from './controller';
 
 const app: Express = express();
 
 const serverApp = async () => {
-  const validators = await docsValidator({ app, config: config.swagger });
+  await docsValidator({ app, config: config.swagger });
   app.use(
     helmet({
       contentSecurityPolicy: false,
@@ -34,7 +35,7 @@ const serverApp = async () => {
   app.use(express.static(join(__dirname, '..', 'client', 'dist')));
   app.use(
     '/api/v1',
-    initRouter({ validators })
+    initRouter({ controller: controller() })
   );
   app.get('/*', (_req, res) => {
     res.sendFile(join(__dirname, '..', 'client', 'dist', 'index.html'));

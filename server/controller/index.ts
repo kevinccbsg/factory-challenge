@@ -1,6 +1,7 @@
+import { Response } from 'express';
 import initialParts, { newFeatureParameter, Client } from './data/info';
 
-const store = () => {
+const controller = () => {
   let clients: Client[] = [];
   let parts = initialParts;
   
@@ -37,4 +38,4 @@ const store = () => {
   };
 };
 
-export default store;
+export default controller;

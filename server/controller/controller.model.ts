@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { FeatureParameter, Part, Client } from "./data/info";
+import { Part, Client } from "./data/info";
 
 export interface Controller {
   getParts: () => Promise<Part[]>;
