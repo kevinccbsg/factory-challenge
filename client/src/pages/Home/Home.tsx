@@ -2,36 +2,37 @@ import { Typography } from "antd";
 import { FeatureTable } from "../../components/FeatureTable/FeatureTable";
 import { useEffect, useState } from "react";
 import { Part } from "../../models";
-import { ROUTES } from "../../constants/Route.constant";
-import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [parts, setParts] = useState<Part[]>([]);
-  const [listening, setListening] = useState(false);
-  const navigate = useNavigate();
 
   useEffect( () => {
-    if (!listening) {
-      const events = new EventSource('http://localhost:4001/api/v1/test');
+    const events = new EventSource('/api/v1/test');
 
-      events.onmessage = (event) => {
-        const parsedData = JSON.parse(event.data) as Part[];
-        setParts(parsedData);
-      };
+    events.onmessage = (event) => {
+      const parsedData = JSON.parse(event.data) as Part[];
+      setParts(parsedData);
+    };
 
-      events.onerror = () => {
-        navigate(ROUTES.ERROR);
-      };
-
-      setListening(true);
-    }
-  }, [listening, navigate]);
+    return () => {
+      events.close();
+    };
+  }, []);
 
   return (
     <main>
       <Typography.Title level={1}>Feature Table</Typography.Title>
       {parts.map((part) => (
-        <FeatureTable key={part.name} />
+        <FeatureTable
+          key={part.name}
+          title={part.name}
+          data={part.features.map((feature, index) => ({
+            key: `${part.name}-${index}-${feature.control}`,
+            control: feature.control,
+            deviation: feature.deviation,
+            devOutOftol: feature.devOutOftol,
+          }))}
+        />
       ))}
     </main>
   );

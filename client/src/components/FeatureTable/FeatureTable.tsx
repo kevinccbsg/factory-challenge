@@ -1,13 +1,11 @@
 import { Table, Tag, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import React from 'react';
 
 interface DataType {
   key: string;
   control: string;
   deviation: number;
-  devOutOfTolerance: number;
-  tags: string[];
+  devOutOftol: number;
 }
 
 const columns: ColumnsType<DataType> = [
@@ -25,8 +23,8 @@ const columns: ColumnsType<DataType> = [
   },
   {
     title: 'dev out of tolerance',
-    dataIndex: 'devOutOfTolerance',
-    key: 'devOutOfTolerance',
+    dataIndex: 'devOutOftol',
+    key: 'devOutOftol',
     width: 200,
     align: 'center',
   },
@@ -35,51 +33,20 @@ const columns: ColumnsType<DataType> = [
     key: 'tags',
     dataIndex: 'tags',
     align: 'center',
-    render: (_, { tags }) => (
-      <>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
+    render: () => (
+      <Tag color="volcano">Test</Tag>
     ),
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    control: 'x',
-    deviation: 0,
-    devOutOfTolerance: 0,
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    control: 'x',
-    deviation: 0,
-    devOutOfTolerance: 0,
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    control: 'x',
-    deviation: 0,
-    devOutOfTolerance: 0,
-    tags: ['cool', 'teacher'],
-  },
-];
+interface FeatureTableProps {
+  title: string;
+  data: DataType[];
+}
 
-export const FeatureTable: React.FC = () => (
+export const FeatureTable = ({ data, title }: FeatureTableProps) => (
   <div>
-    <Typography.Title level={2}>Feature Table</Typography.Title>
+    <Typography.Title level={2}>{title}</Typography.Title>
     <Table columns={columns} dataSource={data} />
   </div>
 );

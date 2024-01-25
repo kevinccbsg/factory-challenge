@@ -5,13 +5,14 @@ const router = express.Router();
 
 const initRouter = ({ controller }: Dependencies) => {
   /**
-   * GET /api/v1/test/
-   * @summary Test route
-   * @tags Test
+   * GET /api/v1/parts/stream
+   * @summary Parts stream information
+   * @tags Parts
    * @return 500 - Internal server error
    */
-  router.get('/', async (req, res, next) => {
+  router.get('/', async (req, res) => {
     const headers = {
+      "Access-Control-Allow-Origin": "*",
       'Content-Type': 'text/event-stream',
       'Connection': 'keep-alive',
       'Cache-Control': 'no-cache'
@@ -19,27 +20,38 @@ const initRouter = ({ controller }: Dependencies) => {
     res.writeHead(200, headers);
 
     const parts = await controller.getParts();
-  
-    const data = `data: ${JSON.stringify(parts)}\n\n`;
-    res.write(data);
 
     const clientId = Date.now();
-    
-    console.log(`${clientId} Connection opened`);
+
     await controller.addClient(clientId, res);
 
-    const intervalId = setInterval(controller.addFeatureParameter, 3000);
+    const data = `data: ${JSON.stringify(parts)}\n\n`;
+    
+    res.write(data);
+    res.flush();
+
+    const intervalId = setInterval(async () => {
+      await controller.addFeatureParameter();
+      const clients = await controller.getClients();
+      const parts = await controller.getParts();
+      clients.forEach((client) => {
+        const data = `data: ${JSON.stringify(parts)}\n\n`;
+        client.response.write(data);
+        res.flush();
+      });
+    }, 5000);
 
     req.on('close', async () => {
-      console.log(`${clientId} Connection closed`);
       await controller.removeClient(clientId);
       clearInterval(intervalId);
+      res.end();
     });
 
     req.on('error', async (error) => {
       console.log(`${clientId} Connection error: ${error}`);
       await controller.removeClient(clientId);
       clearInterval(intervalId);
+      res.end();
     });
   });
 

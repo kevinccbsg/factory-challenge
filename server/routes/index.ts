@@ -1,11 +1,11 @@
 import express from 'express';
-import initTestRoute from './v1/test';
+import initPartsRoute from './v1/parts';
 import { Dependencies } from './routes.model';
 
 const router = express.Router();
 
 const initRouter = (dependencies: Dependencies) => {
-  router.use('/test', initTestRoute(dependencies));
+  router.use('/test', initPartsRoute(dependencies));
 
   return router;
 };
