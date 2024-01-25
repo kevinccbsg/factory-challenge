@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import { faker } from '@faker-js/faker';
 
 export interface Client {
   id: number;
@@ -17,12 +18,12 @@ export interface FeatureParameter {
   devOutOftol: number;
 }
 
-export const newFeatureParameter: FeatureParameter = {
-  control: 'example',
-  tolerance: 0,
-  deviation: 0,
-  devOutOftol: 0,
-};
+export const newFeatureParameter = (): FeatureParameter => ({
+  control: faker.lorem.word(),
+  tolerance: faker.number.int({ min: 0, max: 1 }),
+  deviation: faker.number.int({ min: 0, max: 1 }),
+  devOutOftol: faker.number.int({ min: 0, max: 1 }),
+});
 
 const parts: Part[] = [
   {

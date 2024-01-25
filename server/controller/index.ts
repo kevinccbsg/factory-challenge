@@ -6,9 +6,8 @@ const controller = () => {
   let parts = initialParts;
   
   const addFeatureParameter = () => {
-    const newFeature = newFeatureParameter;
+    const newFeature = newFeatureParameter();
     const randomPartIndex = Math.floor(Math.random() * initialParts.length);
-    console.log(`New feature: ${newFeature}`);
     parts = parts.map((part) => (
       part.name === initialParts[randomPartIndex].name
         ? { ...part, features: [...part.features, newFeature] }
