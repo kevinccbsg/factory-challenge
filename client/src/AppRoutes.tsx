@@ -6,7 +6,15 @@ const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
     element: (
-        <HomePage />
+      <HomePage />
+    ),
+  },
+  {
+    path: ROUTES.ERROR,
+    element: (
+      <div>
+        <h1>500 Error</h1>
+      </div>
     ),
   },
 ]);
