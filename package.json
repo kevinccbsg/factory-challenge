@@ -1,0 +1,35 @@
+{
+  "name": "factory-challenge",
+  "version": "1.0.0",
+  "description": "factory challenge backend and frontend code",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "packages/*"
+  ],
+  "scripts": {
+    "server:dev": "npm run dev -w server",
+    "client:dev": "npm run dev -w client",
+    "build:front": "npm run build -w client",
+    "build:server": "npm run build -w server",
+    "test:server": "npm run test:ci -w server",
+    "start": "NODE_ENV=production node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kevinccbsg/factory-challenge.git"
+  },
+  "keywords": [
+    "react",
+    "node",
+    "vitest"
+  ],
+  "author": "Kevin Julian Martinez Escobar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinccbsg/factory-challenge/issues"
+  },
+  "homepage": "https://github.com/kevinccbsg/factory-challenge#readme"
+}
