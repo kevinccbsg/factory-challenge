@@ -19,7 +19,7 @@
     "baseUrl": ".",
     "paths": {},
     "outDir": "../dist",
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
   "exclude": ["node_modules", "tmp", "**/*.spec.ts"],
   "include": ["**/*.ts"]
