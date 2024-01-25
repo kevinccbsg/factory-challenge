@@ -1,5 +1,5 @@
-import { ValidatorInstance } from 'express-oas-validator';
+import { Controller } from '../controller/controller.model';
 
 export interface Dependencies {
-  validators: ValidatorInstance;
+  controller: Controller;
 }
