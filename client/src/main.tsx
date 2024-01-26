@@ -7,6 +7,7 @@ import { ConfigProvider } from "antd";
 import en from "./locales/en/index.json";
 import es from "./locales/es/index.json";
 import AppRoutes from "./AppRoutes";
+import Nav from "./components/Nav/Nav";
 
 i18next.use(initReactI18next).init({
   lng: "es",
@@ -19,6 +20,7 @@ i18next.use(initReactI18next).init({
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider>
+      <Nav />
       <AppRoutes />
     </ConfigProvider>
   </React.StrictMode>

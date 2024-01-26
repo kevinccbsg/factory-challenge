@@ -33,27 +33,44 @@ const HomePage = () => {
     }
   };
 
+  const getGlobalStatus = (controls: { deviation: number, tolerance: number }[]) => {
+    const hasError = controls.some((control) => 
+      getControlStatus(control.deviation, control.tolerance) === Status.ERROR
+    );
+    const hasWarning = controls.some((control) =>
+      getControlStatus(control.deviation, control.tolerance) === Status.WARNING
+    );
+    if (hasWarning) return Status.WARNING;
+    if (hasError) return Status.ERROR;
+    return Status.OK;
+  }
+
   return (
-    <main className={styles.container}>
-      {parts.map((part) => (
-        <div key={part.name}>
-          <Typography.Title level={2}>{part.name}</Typography.Title>
-          {part.features.map((feature, featureIndex) => (
-            <FeatureTable
-              key={`${part.name}-${featureIndex}`}
-              title={feature.name}
-              data={feature.controls.map((feature, index) => ({
-                key: `${part.name}-${index}-${feature.control}`,
-                control: feature.control,
-                deviation: feature.deviation,
-                devOutOftol: feature.devOutOftol,
-                status: getControlStatus(feature.deviation, feature.tolerance),
-              }))}
-            />
-          ))}
-        </div>
-      ))}
-    </main>
+    <>
+      <main className={styles.container}>
+        {parts.map((part) => (
+          <div className={styles.partContainer} key={part.name}>
+            <Typography.Title level={2}>{part.name}</Typography.Title>
+            <div className={styles.features}>
+              {part.features.map((feature, featureIndex) => (
+                <FeatureTable
+                  key={`${part.name}-${featureIndex}`}
+                  title={feature.name}
+                  status={getGlobalStatus(feature.controls)}
+                  data={feature.controls.map((feature, index) => ({
+                    key: `${part.name}-${index}-${feature.control}`,
+                    control: feature.control,
+                    deviation: feature.deviation,
+                    devOutOftol: feature.devOutOftol,
+                    status: getControlStatus(feature.deviation, feature.tolerance),
+                  }))}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </main>
+    </>
   );
 };
 

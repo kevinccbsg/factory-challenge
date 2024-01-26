@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8em;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #434343;
+}
+
+.container.ok {
+  background-color: #52c41a;
+}
+
+.container.error {
+  background-color: #f5222d;
+}
+
+.container.warning {
+  background-color: #faad14;
+}
+
+.container h3 {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #FFF;
+}

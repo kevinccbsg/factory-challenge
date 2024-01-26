@@ -22,7 +22,7 @@ const columns: ColumnsType<DataType> = [
     title: 'deviation',
     dataIndex: 'deviation',
     key: 'deviation',
-    width: 90,
+    width: 100,
     align: 'center',
   },
   {
@@ -36,6 +36,7 @@ const columns: ColumnsType<DataType> = [
     title: '',
     key: 'status',
     dataIndex: 'status',
+    width: 80,
     align: 'center',
     render: (value) => <ToleranceIcons value={value} />,
   },
@@ -44,12 +45,14 @@ const columns: ColumnsType<DataType> = [
 interface FeatureTableProps {
   title: string;
   data: DataType[];
+  status: Status;
 }
 
-export const FeatureTable = ({ data, title }: FeatureTableProps) => (
+export const FeatureTable = ({ data, title, status }: FeatureTableProps) => (
   <div>
-    <Header title={title} status={Status.OK} />
+    <Header title={title} status={status} />
     <Table
+      bordered
       pagination={false}
       columns={columns}
       dataSource={data}

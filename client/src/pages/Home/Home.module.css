@@ -1,5 +1,31 @@
 .container {
   width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1440px;
+  margin: 2em auto;
 }
+
+.partContainer {
+  margin-bottom: 2em;
+}
+
+.features {
+  display: block;
+  margin-bottom: 1.5em;
+}
+
+@media (width > 992px) {
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5em;
+  }
+}
+
+@media (width > 1440px) {
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5em;
+  }
+}
+
