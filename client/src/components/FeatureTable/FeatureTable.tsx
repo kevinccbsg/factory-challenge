@@ -1,17 +1,8 @@
-import { Table, Typography } from 'antd';
-import { red, gold, green } from '@ant-design/colors';
-import {
-  CheckCircleTwoTone,
-  WarningTwoTone,
-  ExclamationCircleTwoTone,
-} from '@ant-design/icons';
+import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-
-export enum Status {
-  OK = 'OK',
-  WARNING = 'WARNING',
-  ERROR = 'ERROR',
-}
+import { ToleranceIcons } from '../ToleranceIcons/ToleranceIcons';
+import { Status } from '../ToleranceIcons/status';
+import { Header } from '../Header/Header';
 
 interface DataType {
   key: string;
@@ -46,11 +37,7 @@ const columns: ColumnsType<DataType> = [
     key: 'status',
     dataIndex: 'status',
     align: 'center',
-    render: (value) => {
-      if (value === Status.OK) return <CheckCircleTwoTone twoToneColor={green.primary} />;
-      if (value === Status.WARNING) return <WarningTwoTone twoToneColor={gold.primary} />;
-      return <ExclamationCircleTwoTone twoToneColor={red.primary} />;
-    },
+    render: (value) => <ToleranceIcons value={value} />,
   },
 ];
 
@@ -61,7 +48,11 @@ interface FeatureTableProps {
 
 export const FeatureTable = ({ data, title }: FeatureTableProps) => (
   <div>
-    <Typography.Title level={2}>{title}</Typography.Title>
-    <Table columns={columns} dataSource={data} />
+    <Header title={title} status={Status.OK} />
+    <Table
+      pagination={false}
+      columns={columns}
+      dataSource={data}
+    />
   </div>
 );
