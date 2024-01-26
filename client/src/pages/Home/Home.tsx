@@ -1,7 +1,9 @@
 import { Typography } from "antd";
 import { useEffect, useState } from "react";
-import { FeatureTable, Status } from "../../components/FeatureTable/FeatureTable";
+import { FeatureTable } from "../../components/FeatureTable/FeatureTable";
 import { Part } from "../../models";
+import { Status } from "../../components/ToleranceIcons/status";
+import styles from "./Home.module.css";
 
 const HomePage = () => {
   const [parts, setParts] = useState<Part[]>([]);
@@ -32,10 +34,10 @@ const HomePage = () => {
   };
 
   return (
-    <main>
+    <main className={styles.container}>
       {parts.map((part) => (
         <div key={part.name}>
-          <Typography.Title level={1}>{part.name}</Typography.Title>
+          <Typography.Title level={2}>{part.name}</Typography.Title>
           {part.features.map((feature, featureIndex) => (
             <FeatureTable
               key={`${part.name}-${featureIndex}`}
