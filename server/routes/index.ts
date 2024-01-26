@@ -5,7 +5,7 @@ import { Dependencies } from './routes.model';
 const router = express.Router();
 
 const initRouter = (dependencies: Dependencies) => {
-  router.use('/test', initPartsRoute(dependencies));
+  router.use('/parts', initPartsRoute(dependencies));
 
   return router;
 };

@@ -10,7 +10,7 @@ const initRouter = ({ controller }: Dependencies) => {
    * @tags Parts
    * @return 500 - Internal server error
    */
-  router.get('/', async (req, res) => {
+  router.get('/stream', async (req, res) => {
     const headers = {
       "Access-Control-Allow-Origin": "*",
       'Content-Type': 'text/event-stream',
