@@ -30,27 +30,27 @@ const initRouter = ({ controller }: Dependencies) => {
     res.write(data);
     res.flush();
 
-    const intervalId = setInterval(async () => {
-      await controller.addFeatureParameter();
-      const clients = await controller.getClients();
-      const parts = await controller.getParts();
-      clients.forEach((client) => {
-        const data = `data: ${JSON.stringify(parts)}\n\n`;
-        client.response.write(data);
-        res.flush();
-      });
-    }, 5000);
+    // const intervalId = setInterval(async () => {
+    //   await controller.addFeatureParameter();
+    //   const clients = await controller.getClients();
+    //   const parts = await controller.getParts();
+    //   clients.forEach((client) => {
+    //     const data = `data: ${JSON.stringify(parts)}\n\n`;
+    //     client.response.write(data);
+    //     res.flush();
+    //   });
+    // }, 5000);
 
     req.on('close', async () => {
       await controller.removeClient(clientId);
-      clearInterval(intervalId);
+      // clearInterval(intervalId);
       res.end();
     });
 
     req.on('error', async (error) => {
       console.log(`${clientId} Connection error: ${error}`);
       await controller.removeClient(clientId);
-      clearInterval(intervalId);
+      // clearInterval(intervalId);
       res.end();
     });
   });

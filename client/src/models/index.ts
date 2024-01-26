@@ -1,9 +1,14 @@
 export interface Part {
   name: string;
-  features: FeatureParameter[];
+  features: Feature[];
 }
 
-export interface FeatureParameter {
+interface Feature {
+  name: string;
+  controls: Control[];
+}
+
+export interface Control {
   control: string;
   tolerance: number;
   deviation: number;

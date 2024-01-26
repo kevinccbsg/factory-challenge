@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import initialParts, { newFeatureParameter, Client } from './data/info';
+import initialParts, { newControlParameter, Client } from './data/info';
 import logger from '../utils/logger';
 
 const controller = () => {
@@ -7,13 +7,26 @@ const controller = () => {
   let parts = initialParts;
   
   const addFeatureParameter = () => {
-    const newFeature = newFeatureParameter();
+    const newFeature = newControlParameter();
     const randomPartIndex = Math.floor(Math.random() * initialParts.length);
-    parts = parts.map((part) => (
-      part.name === initialParts[randomPartIndex].name
-        ? { ...part, features: [...part.features, newFeature] }
-        : part
-    ));
+    const randomFeatureIndex = Math.floor(Math.random() * initialParts[randomPartIndex].features.length);
+
+    parts = parts.map((part) => {
+      if (part.name !== initialParts[randomPartIndex].name) return part;
+      const updatedFeatures = part.features.map((feature, index) => {
+        if (index !== randomFeatureIndex) return feature;
+        return {
+          ...feature,
+          controls: [...feature.controls, newFeature],
+        };
+      });
+
+      return {
+        ...part,
+        features: updatedFeatures,
+      };
+    });
+
     return Promise.resolve();
   };
 

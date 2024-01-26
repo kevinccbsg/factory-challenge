@@ -8,17 +8,22 @@ export interface Client {
 
 export interface Part {
   name: string;
-  features: FeatureParameter[];
+  features: Feature[];
 }
 
-export interface FeatureParameter {
+interface Feature {
+  name: string;
+  controls: Control[];
+}
+
+export interface Control {
   control: string;
   tolerance: number;
   deviation: number;
   devOutOftol: number;
 }
 
-export const newFeatureParameter = (): FeatureParameter => ({
+export const newControlParameter = (): Control => ({
   control: faker.lorem.word(),
   tolerance: faker.number.int({ min: 0, max: 1 }),
   deviation: faker.number.int({ min: 0, max: 1 }),
@@ -30,22 +35,73 @@ const parts: Part[] = [
     name: 'carDoor',
     features: [
       {
-        control: 'seam',
-        tolerance: 0.05,
-        deviation: 0.02,
-        devOutOftol: 0.03,
+        name: 'seam',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'length',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'slot',
-        tolerance: 0.1,
-        deviation: -0.05,
-        devOutOftol: 0.15,
+        name: 'slot',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'length',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'hole',
-        tolerance: 0.2,
-        deviation: 0.1,
-        devOutOftol: 0.25,
+        name: 'hole',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'length',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
     ],
   },
@@ -53,22 +109,50 @@ const parts: Part[] = [
     name: 'engineBlock',
     features: [
       {
-        control: 'cylinderDiameter',
-        tolerance: 0.1,
-        deviation: 0.05,
-        devOutOftol: 0.12,
+        name: 'cylinder',
+        controls: [
+          {
+            control: 'diameter',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'height',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'length',
-        tolerance: 0.2,
-        deviation: 0.15,
-        devOutOftol: 0.25,
-      },
-      {
-        control: 'boltHole',
-        tolerance: 0.05,
-        deviation: -0.03,
-        devOutOftol: 0.08,
+        name: 'boltHole',
+        controls: [
+          {
+            control: 'diameter',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'height',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
     ],
   },
@@ -76,22 +160,50 @@ const parts: Part[] = [
     name: 'robotArm',
     features: [
       {
-        control: 'rotationAngle',
-        tolerance: 0.1,
-        deviation: -0.02,
-        devOutOftol: 0.12,
+        name: 'arm',
+        controls: [
+          {
+            control: 'length',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'width',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'reachDistance',
-        tolerance: 0.2,
-        deviation: 0.1,
-        devOutOftol: 0.22,
-      },
-      {
-        control: 'gripForce',
-        tolerance: 0.05,
-        deviation: 0.03,
-        devOutOftol: 0.08,
+        name: 'gripper',
+        controls: [
+          {
+            control: 'length',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'width',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
     ],
   },
@@ -99,45 +211,124 @@ const parts: Part[] = [
     name: 'controlPanel',
     features: [
       {
-        control: 'buttonSize',
-        tolerance: 0.1,
-        deviation: 0.05,
-        devOutOftol: 0.12,
+        name: 'button',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'length',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'displayBrightness',
-        tolerance: 0.2,
-        deviation: -0.1,
-        devOutOftol: 0.22,
+        name: 'switch',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'length',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'switchDurability',
-        tolerance: 0.05,
-        deviation: 0.02,
-        devOutOftol: 0.07,
+        name: 'knob',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'length',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
     ],
   },
   {
-    name: 'gearAssembly',
+    name: 'gearbox',
     features: [
       {
-        control: 'gearTeethCount',
-        tolerance: 0.1,
-        deviation: 0.02,
-        devOutOftol: 0.12,
+        name: 'gear',
+        controls: [
+          {
+            control: 'diameter',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'height',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+          {
+            control: 'angle',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+          {
+            control: 'material',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
       {
-        control: 'shaftLength',
-        tolerance: 0.2,
-        deviation: 0.1,
-        devOutOftol: 0.22,
-      },
-      {
-        control: 'bearingFriction',
-        tolerance: 0.05,
-        deviation: -0.03,
-        devOutOftol: 0.08,
+        name: 'shaft',
+        controls: [
+          {
+            control: 'diameter',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+          {
+            control: 'height',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+        ],
       },
     ],
   },
@@ -145,68 +336,29 @@ const parts: Part[] = [
     name: 'sensorArray',
     features: [
       {
-        control: 'sensorAccuracy',
-        tolerance: 0.1,
-        deviation: -0.05,
-        devOutOftol: 0.15,
-      },
-      {
-        control: 'responseTime',
-        tolerance: 0.2,
-        deviation: 0.1,
-        devOutOftol: 0.25,
-      },
-      {
-        control: 'powerConsumption',
-        tolerance: 0.05,
-        deviation: 0.03,
-        devOutOftol: 0.08,
-      },
-    ],
-  },
-  {
-    name: 'conveyorBelt',
-    features: [
-      {
-        control: 'speed',
-        tolerance: 0.1,
-        deviation: 0.02,
-        devOutOftol: 0.12,
-      },
-      {
-        control: 'width',
-        tolerance: 0.2,
-        deviation: 0.1,
-        devOutOftol: 0.22,
-      },
-      {
-        control: 'beltMaterialDurability',
-        tolerance: 0.05,
-        deviation: -0.03,
-        devOutOftol: 0.08,
-      },
-    ],
-  },
-  {
-    name: 'lightFixture',
-    features: [
-      {
-        control: 'brightness',
-        tolerance: 0.1,
-        deviation: 0.05,
-        devOutOftol: 0.12,
-      },
-      {
-        control: 'colorTemperature',
-        tolerance: 0.2,
-        deviation: -0.1,
-        devOutOftol: 0.22,
-      },
-      {
-        control: 'energyConsumption',
-        tolerance: 0.05,
-        deviation: 0.02,
-        devOutOftol: 0.07,
+        name: 'sensor',
+        controls: [
+          {
+            control: 'width',
+            tolerance: 0.1,
+            deviation: 0.05,
+            devOutOftol: 0.15,
+          },
+
+          {
+            control: 'height',
+            tolerance: 0.2,
+            deviation: 0.1,
+            devOutOftol: 0.25,
+          },
+
+          {
+            control: 'material',
+            tolerance: 0.05,
+            deviation: -0.03,
+            devOutOftol: 0.08,
+          },
+        ],
       },
     ],
   },

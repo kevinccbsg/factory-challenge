@@ -7,7 +7,7 @@ const HomePage = () => {
   const [parts, setParts] = useState<Part[]>([]);
 
   useEffect( () => {
-    const events = new EventSource('/api/v1/test');
+    const events = new EventSource('/api/v1/parts/stream');
 
     events.onmessage = (event) => {
       const parsedData = JSON.parse(event.data) as Part[];
@@ -21,18 +21,22 @@ const HomePage = () => {
 
   return (
     <main>
-      <Typography.Title level={1}>Feature Table</Typography.Title>
       {parts.map((part) => (
-        <FeatureTable
-          key={part.name}
-          title={part.name}
-          data={part.features.map((feature, index) => ({
-            key: `${part.name}-${index}-${feature.control}`,
-            control: feature.control,
-            deviation: feature.deviation,
-            devOutOftol: feature.devOutOftol,
-          }))}
-        />
+        <div key={part.name}>
+          <Typography.Title level={1}>{part.name}</Typography.Title>
+          {part.features.map((feature, featureIndex) => (
+            <FeatureTable
+              key={`${part.name}-${featureIndex}`}
+              title={feature.name}
+              data={feature.controls.map((feature, index) => ({
+                key: `${part.name}-${index}-${feature.control}`,
+                control: feature.control,
+                deviation: feature.deviation,
+                devOutOftol: feature.devOutOftol,
+              }))}
+            />
+          ))}
+        </div>
       ))}
     </main>
   );
