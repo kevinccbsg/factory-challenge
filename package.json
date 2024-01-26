@@ -12,7 +12,7 @@
   "scripts": {
     "server:dev": "npm run dev -w server",
     "client:dev": "npm run dev -w client",
-    "build:front": "npm run build -w client",
+    "build:client": "npm run build -w client",
     "build:server": "npm run build -w server",
     "test:server": "npm run test:ci -w server",
     "start": "NODE_ENV=production node dist/server.js"

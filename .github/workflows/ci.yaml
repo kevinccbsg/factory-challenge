@@ -1,0 +1,23 @@
+name: CI tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies for the server to execute migrations
+        run: npm install -w server
+
+      - name: Run server tests
+        run: npm run test:server
