@@ -30,8 +30,8 @@ const HomePage = () => {
     const hasWarning = controls.some((control) =>
       getControlStatus(control.deviation, control.tolerance) === Status.WARNING
     );
-    if (hasWarning) return Status.WARNING;
     if (hasError) return Status.ERROR;
+    if (hasWarning) return Status.WARNING;
     return Status.OK;
   }
 
@@ -56,8 +56,8 @@ const HomePage = () => {
                   data={feature.controls.map((feature, index) => ({
                     key: `${part.name}-${index}-${feature.control}`,
                     control: feature.control,
-                    deviation: feature.deviation,
-                    devOutOftol: feature.devOutOftol,
+                    deviation: +feature.deviation.toFixed(2),
+                    devOutOftol: +feature.devOutOftol.toFixed(2),
                     status: getControlStatus(feature.deviation, feature.tolerance),
                   }))}
                 />
