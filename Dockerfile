@@ -16,7 +16,7 @@ RUN npm install
 # Copy the rest of the application code to /app
 COPY . .
 
-RUN npm run build:front && npm run build:server
+RUN npm run build:client && npm run build:server
 
 # Set the command to start the application
 CMD ["npm", "start"]
