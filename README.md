@@ -2,8 +2,6 @@
 
 TODO:
 
-- Add icon logic
-- Improve layout
 - Use i18n
 - Improve README
 - Add unit tests frontend

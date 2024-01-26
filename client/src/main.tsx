@@ -10,7 +10,7 @@ import AppRoutes from "./AppRoutes";
 import Nav from "./components/Nav/Nav";
 
 i18next.use(initReactI18next).init({
-  lng: "es",
+  lng: "en",
   resources: {
     en: { translation: en },
     es: { translation: es },

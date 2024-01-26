@@ -1,5 +1,4 @@
 {
-  "homepage": {
-    "title": "Check incidences"
-  }
+  "introduction": "Factory is a web application that allows users to check the quality of various features and controls. With Factory, <1>users can easily navigate through different parts of a hardware</1> and assess the status of each feature's controls.",
+  "description": "The application provides a user-friendly interface where users can view detailed information about each feature, including its name, deviation, tolerance, and overall status. By visualizing the quality of the controls, Factory empowers users to make informed decisions and ensure the highest standards of quality in their car manufacturing process."
 }

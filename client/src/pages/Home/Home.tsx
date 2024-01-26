@@ -1,26 +1,15 @@
 import { Typography } from "antd";
-import { useEffect, useState } from "react";
 import { FeatureTable } from "../../components/FeatureTable/FeatureTable";
 import { Part } from "../../models";
 import { Status } from "../../components/ToleranceIcons/status";
 import styles from "./Home.module.css";
 import { Footer } from "../../components/Footer/Footer";
+import { Trans, useTranslation } from "react-i18next";
+import useSSE from "../../hooks/useSSE";
 
 const HomePage = () => {
-  const [parts, setParts] = useState<Part[]>([]);
-
-  useEffect( () => {
-    const events = new EventSource('/api/v1/parts/stream');
-
-    events.onmessage = (event) => {
-      const parsedData = JSON.parse(event.data) as Part[];
-      setParts(parsedData);
-    };
-
-    return () => {
-      events.close();
-    };
-  }, []);
+  const { t } = useTranslation();
+  const { parts } = useSSE<Part>('/api/v1/parts/stream');
 
   const getControlStatus = (deviation: number, tolerance: number) => {
     const deviationPercentage = Math.abs((deviation / tolerance) * 100);
@@ -49,10 +38,16 @@ const HomePage = () => {
   return (
     <>
       <main className={styles.container}>
+        <p>
+          <Trans i18nKey="introduction">
+            Factory is a web application that allows users to check the quality of various features and controls. With Factory, <strong>users can easily navigate through different parts of a hardware</strong> and assess the status of each feature's controls.
+          </Trans>
+        </p>
+        <p>{t("description")}</p>
         {parts.map((part) => (
-          <div className={styles.partContainer} key={part.name}>
+          <section className={styles.partContainer} key={part.name}>
             <Typography.Title level={2}>{part.name}</Typography.Title>
-            <div className={styles.features}>
+            <section className={styles.features}>
               {part.features.map((feature, featureIndex) => (
                 <FeatureTable
                   key={`${part.name}-${featureIndex}`}
@@ -67,8 +62,8 @@ const HomePage = () => {
                   }))}
                 />
               ))}
-            </div>
-          </div>
+            </section>
+          </section>
         ))}
       </main>
       <Footer />

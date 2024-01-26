@@ -1,5 +1,4 @@
 {
-  "homepage": {
-    "title": "Revisar incidencias"
-  }
+  "introduction": "Factory es una aplicación web que permite a los usuarios verificar la calidad de varias características y controles. Con Factory, <1>los usuarios pueden navegar fácilmente por diferentes partes de un hardware</1> y evaluar el estado de los controles de cada característica.",
+  "description": "La aplicación proporciona una interfaz fácil de usar donde los usuarios pueden ver información detallada sobre cada característica, incluyendo su nombre, desviación, tolerancia y estado general. Al visualizar la calidad de los controles, Factory capacita a los usuarios para tomar decisiones informadas y garantizar los más altos estándares de calidad en su proceso de fabricación de automóviles."
 }
