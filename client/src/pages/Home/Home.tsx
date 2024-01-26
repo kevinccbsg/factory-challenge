@@ -4,6 +4,7 @@ import { FeatureTable } from "../../components/FeatureTable/FeatureTable";
 import { Part } from "../../models";
 import { Status } from "../../components/ToleranceIcons/status";
 import styles from "./Home.module.css";
+import { Footer } from "../../components/Footer/Footer";
 
 const HomePage = () => {
   const [parts, setParts] = useState<Part[]>([]);
@@ -70,6 +71,7 @@ const HomePage = () => {
           </div>
         ))}
       </main>
+      <Footer />
     </>
   );
 };
