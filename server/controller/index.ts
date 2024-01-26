@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import initialParts, { newControlParameter, Client } from './data/info';
+import initialParts, { newControlParameter, Client } from '../data/info';
 import logger from '../utils/logger';
 
 const controller = () => {

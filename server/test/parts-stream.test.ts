@@ -3,7 +3,7 @@ import { Express } from 'express';
 import supertest from 'supertest';
 import initApp from '../app';
 import { beforeAll, describe, expect, it } from 'vitest';
-import initialParts from '../controller/data/info';
+import initialParts from '../data/info';
 
 describe('Conversation ai recipe test', () => {
   let request: Express;

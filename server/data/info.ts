@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { faker } from '@faker-js/faker';
+import { generateFakeControl } from './utils';
 
 export interface Client {
   id: number;
@@ -23,12 +23,7 @@ export interface Control {
   devOutOftol: number;
 }
 
-export const newControlParameter = (): Control => ({
-  control: faker.lorem.word(),
-  tolerance: faker.number.int({ min: 0, max: 1 }),
-  deviation: faker.number.int({ min: 0, max: 1 }),
-  devOutOftol: faker.number.int({ min: 0, max: 1 }),
-});
+export const newControlParameter = (): Control => generateFakeControl();
 
 const parts: Part[] = [
   {
@@ -38,22 +33,16 @@ const parts: Part[] = [
         name: 'seam',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -61,22 +50,16 @@ const parts: Part[] = [
         name: 'slot',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -84,22 +67,16 @@ const parts: Part[] = [
         name: 'hole',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -112,22 +89,16 @@ const parts: Part[] = [
         name: 'cylinder',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'diameter',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'height',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -135,22 +106,16 @@ const parts: Part[] = [
         name: 'boltHole',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'diameter',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'height',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -163,22 +128,16 @@ const parts: Part[] = [
         name: 'arm',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -186,22 +145,16 @@ const parts: Part[] = [
         name: 'gripper',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -214,22 +167,16 @@ const parts: Part[] = [
         name: 'button',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -237,22 +184,16 @@ const parts: Part[] = [
         name: 'switch',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -260,22 +201,16 @@ const parts: Part[] = [
         name: 'knob',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'length',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -288,28 +223,20 @@ const parts: Part[] = [
         name: 'gear',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'diameter',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'height',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
           {
+            ...generateFakeControl(),
             control: 'angle',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
           {
+            ...generateFakeControl(),
             control: 'material',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },
@@ -317,16 +244,12 @@ const parts: Part[] = [
         name: 'shaft',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'diameter',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
           {
+            ...generateFakeControl(),
             control: 'height',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
         ],
       },
@@ -339,24 +262,16 @@ const parts: Part[] = [
         name: 'sensor',
         controls: [
           {
+            ...generateFakeControl(),
             control: 'width',
-            tolerance: 0.1,
-            deviation: 0.05,
-            devOutOftol: 0.15,
           },
-
           {
+            ...generateFakeControl(),
             control: 'height',
-            tolerance: 0.2,
-            deviation: 0.1,
-            devOutOftol: 0.25,
           },
-
           {
+            ...generateFakeControl(),
             control: 'material',
-            tolerance: 0.05,
-            deviation: -0.03,
-            devOutOftol: 0.08,
           },
         ],
       },

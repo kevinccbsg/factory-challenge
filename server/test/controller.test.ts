@@ -2,7 +2,7 @@ import { describe, it, expect, vitest, beforeEach } from 'vitest';
 import { Response } from 'express';
 import controller from '../controller';
 import { Controller } from '../controller/controller.model';
-import initialParts from '../controller/data/info';
+import initialParts from '../data/info';
 
 describe('controller tests', () => {
   let controllerInstance: Controller;
