@@ -5,7 +5,10 @@ FROM node:20.11.0-alpine
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files to /app
-COPY package*.json server/package*.json client/package*.json ./
+RUN mkdir client server
+COPY package*.json ./
+COPY server/package*.json ./server
+COPY client/package*.json ./client
 
 # Install dependencies
 RUN npm install
@@ -13,7 +16,7 @@ RUN npm install
 # Copy the rest of the application code to /app
 COPY . .
 
-RUN npm run build:front && npm run server:generate && npm run build:server
+RUN npm run build:front && npm run build:server
 
 # Set the command to start the application
 CMD ["npm", "start"]
