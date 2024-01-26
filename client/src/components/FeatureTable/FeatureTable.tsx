@@ -1,11 +1,24 @@
-import { Table, Tag, Typography } from 'antd';
+import { Table, Typography } from 'antd';
+import { red, gold, green } from '@ant-design/colors';
+import {
+  CheckCircleTwoTone,
+  WarningTwoTone,
+  ExclamationCircleTwoTone,
+} from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
+
+export enum Status {
+  OK = 'OK',
+  WARNING = 'WARNING',
+  ERROR = 'ERROR',
+}
 
 interface DataType {
   key: string;
   control: string;
   deviation: number;
   devOutOftol: number;
+  status: Status;
 }
 
 const columns: ColumnsType<DataType> = [
@@ -29,13 +42,15 @@ const columns: ColumnsType<DataType> = [
     align: 'center',
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
+    title: '',
+    key: 'status',
+    dataIndex: 'status',
     align: 'center',
-    render: () => (
-      <Tag color="volcano">Test</Tag>
-    ),
+    render: (value) => {
+      if (value === Status.OK) return <CheckCircleTwoTone twoToneColor={green.primary} />;
+      if (value === Status.WARNING) return <WarningTwoTone twoToneColor={gold.primary} />;
+      return <ExclamationCircleTwoTone twoToneColor={red.primary} />;
+    },
   },
 ];
 

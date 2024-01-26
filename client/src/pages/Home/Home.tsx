@@ -1,6 +1,6 @@
 import { Typography } from "antd";
-import { FeatureTable } from "../../components/FeatureTable/FeatureTable";
 import { useEffect, useState } from "react";
+import { FeatureTable, Status } from "../../components/FeatureTable/FeatureTable";
 import { Part } from "../../models";
 
 const HomePage = () => {
@@ -19,6 +19,18 @@ const HomePage = () => {
     };
   }, []);
 
+  const getControlStatus = (deviation: number, tolerance: number) => {
+    const deviationPercentage = Math.abs((deviation / tolerance) * 100);
+
+    if (deviationPercentage <= 30) {
+      return Status.OK;
+    } else if (deviationPercentage <= 60) {
+      return Status.WARNING;
+    } else {
+      return Status.ERROR;
+    }
+  };
+
   return (
     <main>
       {parts.map((part) => (
@@ -33,6 +45,7 @@ const HomePage = () => {
                 control: feature.control,
                 deviation: feature.deviation,
                 devOutOftol: feature.devOutOftol,
+                status: getControlStatus(feature.deviation, feature.tolerance),
               }))}
             />
           ))}
