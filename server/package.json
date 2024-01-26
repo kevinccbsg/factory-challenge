@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build",
-    "dev": "nodemon server.ts"
+    "dev": "nodemon server.ts",
+    "test": "vitest",
+    "test:ci": "vitest --run"
   },
   "keywords": [
     "express",
@@ -34,6 +36,7 @@
     "@types/node": "^20.11.6",
     "nodemon": "^3.0.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
   }
 }

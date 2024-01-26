@@ -1,5 +1,6 @@
 import { Response } from 'express';
 import initialParts, { newFeatureParameter, Client } from './data/info';
+import logger from '../utils/logger';
 
 const controller = () => {
   let clients: Client[] = [];
@@ -25,12 +26,12 @@ const controller = () => {
         id: clientId,
         response,
       };
-      console.log(`${clientId} Connection opened`);
+      logger.info(`${clientId} Connection opened`);
       clients.push(newClient);
       return Promise.resolve();
     },
     removeClient: (clientId: number) => {
-      console.log(`${clientId} Connection closed`);
+      logger.info(`${clientId} Connection closed`);
       clients = clients.filter(client => client.id !== clientId);
       return Promise.resolve();
     },
