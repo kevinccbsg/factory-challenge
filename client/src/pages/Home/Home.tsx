@@ -1,11 +1,11 @@
-import { Typography } from "antd";
-import { FeatureTable } from "../../components/FeatureTable/FeatureTable";
-import { Part } from "../../models";
-import { Status } from "../../components/ToleranceIcons/status";
-import styles from "./Home.module.css";
-import { Footer } from "../../components/Footer/Footer";
-import { Trans, useTranslation } from "react-i18next";
-import useSSE from "../../hooks/useSSE";
+import { Typography } from 'antd';
+import { Trans, useTranslation } from 'react-i18next';
+import { FeatureTable } from '../../components/FeatureTable/FeatureTable';
+import { Status } from '../../components/ToleranceIcons/status';
+import { Footer } from '../../components/Footer/Footer';
+import { Part } from '../../models';
+import useSSE from '../../hooks/useSSE';
+import styles from './Home.module.css';
 
 const HomePage = () => {
   const { t } = useTranslation();

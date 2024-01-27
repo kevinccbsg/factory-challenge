@@ -1,6 +1,7 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/Home/Home";
-import { ROUTES } from "./constants/Route.constant";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/Home/Home';
+import ErrorPage from './pages/Error/Error';
+import { ROUTES } from './constants/Route.constant';
 
 const router = createBrowserRouter([
   {
@@ -11,11 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: ROUTES.ERROR,
-    element: (
-      <div>
-        <h1>500 Error</h1>
-      </div>
-    ),
+    element: <ErrorPage />,
   },
 ]);
 

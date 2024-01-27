@@ -17,7 +17,7 @@ const controller = () => {
         if (index !== randomFeatureIndex) return feature;
         return {
           ...feature,
-          controls: [...feature.controls, newFeature],
+          controls: [newFeature, ...feature.controls],
         };
       });
 
