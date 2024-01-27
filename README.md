@@ -12,7 +12,10 @@ Both workspaces are using [vitest](https://vitest.dev/) as a testing library.
 
 The app is also Dockerized and deploy it using Google cloud run.
 
-Try out here (It uses Google cloud run serverless. Therefore the first load might be slow due to cold start).
+## Demo link
+
+[Try out here](https://factory-app-hkqpmww4gq-ew.a.run.app) (It uses Google cloud run serverless. Therefore the first load might be slow due to cold start).
+[OpenAPI docs](https://factory-app-hkqpmww4gq-ew.a.run.app/api-docs/)
 
 ## Tools Used
 
