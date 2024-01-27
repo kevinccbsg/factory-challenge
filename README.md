@@ -1,5 +1,7 @@
 # factory-challenge
 
+[![CI tests](https://github.com/kevinccbsg/factory-challenge/actions/workflows/ci.yaml/badge.svg)](https://github.com/kevinccbsg/factory-challenge/actions/workflows/ci.yaml)
+
 This repository is a monorepo that uses npm workspaces to separate the backend server folder and the frontend in the client folder.
 
 Server code is a basic [express](https://expressjs.com/) app with one enpoint that uses Server Sent Events to emit info to the frontend app.
