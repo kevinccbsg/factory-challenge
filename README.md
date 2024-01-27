@@ -19,6 +19,8 @@ The app is also Dockerized and deploy it using Google cloud run.
 
 ## Tools Used
 
+Requirements: This app was developed with Node 20.11.0.
+
 - Core Tools
   - [Node.js](https://nodejs.org/en)
   - [Typescript](https://www.typescriptlang.org/)
