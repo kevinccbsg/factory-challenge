@@ -16,8 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install dependencies for the server to execute migrations
-        run: npm install -w server
+      - name: Install dependencies
+        run: npm install
 
       - name: Run server tests
-        run: npm run test:server
+        run: npm run test
