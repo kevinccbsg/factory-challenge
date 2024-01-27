@@ -15,6 +15,7 @@
     "build:client": "npm run build -w client",
     "build:server": "npm run build -w server",
     "test:server": "npm run test:ci -w server",
+    "test:client": "npm run test:ci -w client",
     "start": "NODE_ENV=production node dist/server.js"
   },
   "repository": {

@@ -7,7 +7,7 @@ import { ConfigProvider } from "antd";
 import en from "./locales/en/index.json";
 import es from "./locales/es/index.json";
 import AppRoutes from "./AppRoutes";
-import Nav from "./components/Nav/Nav";
+import { Nav } from "./components/Nav/Nav";
 
 i18next.use(initReactI18next).init({
   lng: "en",
